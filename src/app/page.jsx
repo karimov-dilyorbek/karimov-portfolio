@@ -111,7 +111,7 @@ function ProjectCard({ title, description, tags, link }) {
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm font-medium group/link">
-          Ochish
+          Open
           <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
         </a>
       </div>
