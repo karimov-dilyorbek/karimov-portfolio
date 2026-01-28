@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail, ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Animated stars background component
 function CosmicBackground() {
   const canvasRef = useRef(null);
 
@@ -20,7 +19,6 @@ function CosmicBackground() {
 
     const stars = [];
 
-    // Create stars
     for (let i = 0; i < 150; i++) {
       stars.push({
         x: Math.random() * canvas.width,
@@ -38,18 +36,15 @@ function CosmicBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       stars.forEach((star) => {
-        // Twinkling effect
         star.opacity += (Math.random() - 0.5) * 0.05;
         star.opacity = Math.max(0.2, Math.min(1, star.opacity));
 
-        // Movement
         star.y += star.speed;
         if (star.y > canvas.height) {
           star.y = -10;
           star.x = Math.random() * canvas.width;
         }
 
-        // Draw star
         ctx.fillStyle = `rgba(96, 165, 250, ${star.opacity})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
@@ -77,7 +72,6 @@ function CosmicBackground() {
   return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} />;
 }
 
-// Glowing orb component
 function GlowingOrb() {
   return (
     <div className="fixed top-20 right-10 w-96 h-96 pointer-events-none opacity-20">
@@ -86,7 +80,6 @@ function GlowingOrb() {
   );
 }
 
-// Project card component
 function ProjectCard({ title, description, tags, link }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -95,7 +88,6 @@ function ProjectCard({ title, description, tags, link }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="group relative overflow-hidden rounded-lg border border-slate-700 bg-slate-900/50 backdrop-blur p-6 hover:border-cyan-500/50 transition-all duration-300">
-      {/* Animated background */}
       <div
         className={`absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
       />
@@ -127,7 +119,6 @@ function ProjectCard({ title, description, tags, link }) {
   );
 }
 
-// Skill badge component
 function SkillBadge({ skill }) {
   return (
     <div className="px-4 py-2 rounded-full border border-cyan-500/30 bg-blue-500/10 text-cyan-300 text-sm hover:border-cyan-400 hover:bg-blue-500/20 transition-all duration-300 inline-block">
@@ -179,28 +170,13 @@ export default function Portfolio() {
     },
   ];
 
-  const skills = [
-    "React",
-    "Next.js",
-    "JavaScript",
-    "TailwindCSS",
-    "Node.js",
-    "PostgreSQL",
-    "MongoDB",
-    "GraphQL",
-    "WebSocket",
-    "Git",
-    "Docker",
-    "AWS",
-  ];
+  const skills = ["Html", "Css", "React", "Next.js", "JavaScript", "TailwindCSS", "TypeScript"];
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
-      {/* Background elements */}
       <CosmicBackground />
       <GlowingOrb />
 
-      {/* Navigation */}
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? "bg-slate-950/80 backdrop-blur border-b border-slate-800" : "bg-transparent"
@@ -213,40 +189,37 @@ export default function Portfolio() {
           </div>
           <div className="flex gap-8 items-center">
             <a href="#about" className="text-slate-300 hover:text-cyan-400 transition-colors">
-              Haqimda
+              About Me
             </a>
             <a href="#projects" className="text-slate-300 hover:text-cyan-400 transition-colors">
-              Proyektlar
+              Projects
             </a>
             <a href="#contact" className="text-slate-300 hover:text-cyan-400 transition-colors">
-              Bog'lanish
+              Contact
             </a>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center pt-20">
+      <section className="min-h-screen relative flex items-center justify-center pt-20 -mb-15">
         <div className="max-w-5xl mx-auto px-6 text-center z-10">
-          {/* Animated border */}
           <div className="mb-8 inline-block">
             <div className="px-4 py-2 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-medium backdrop-blur animate-pulse">
-              ✨ Frontend Dasturchiman
+              ✨ Frontend Developer
             </div>
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white">Salom! Meni</span>
-            <br />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
-              Ismim Nomi
+              Karimov Dilyorbek
             </span>
-            <span className="text-white"> deb ataymiz</span>
+            <br />
+            <span className="text-white"> Young Frontend Developer</span>
           </h1>
 
           <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Men modern web applications yaratamiz. Next.js, React, va JavaScript bilan professional solutions build
-            qilaman. Har bir project attention to detail va performance optimization bilan yaratiladi.
+            Hi! I'm a passionate Frontend Developer focused on building responsive and interactive web
+            applications. I enjoy turning ideas into clean and functional code using modern technologies.
           </p>
 
           <div className="flex gap-4 justify-center mb-16">
@@ -254,36 +227,25 @@ export default function Portfolio() {
               size="lg"
               className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-8"
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>
-              Proyektlarni ko'rish
+              Projects
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold px-8 bg-transparent"
+              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white font-semibold px-8 bg-transparent"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-              Bog'lanish
+              Contact
             </Button>
-          </div>
-
-          {/* Floating element */}
-          <div className="relative h-64 md:h-96">
-            <div
-              className="absolute left-1/2 -translate-x-1/2 w-80 h-80 rounded-full border-2 border-cyan-500/20 animate-spin opacity-30"
-              style={{ animationDuration: "20s" }}></div>
-            <div
-              className="absolute left-1/2 -translate-x-1/2 w-60 h-60 rounded-full border-2 border-blue-500/20 animate-spin opacity-20"
-              style={{ animationDuration: "15s", animationDirection: "reverse" }}></div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="relative py-20 px-6">
+      <section id="about" className="relative px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center">
-            <span className="text-white">Meni </span>
-            <span className="text-cyan-400">Haqimda</span>
+          <h2 className="text-6xl font-bold mb-12 text-center">
+            <span className="text-white">About </span>
+            <span className="text-cyan-400">Me</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -300,7 +262,7 @@ export default function Portfolio() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6">Skills</h3>
+              <h3 className="text-4xl font-bold text-cyan-400 mb-6">Skills</h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill) => (
                   <SkillBadge key={skill} skill={skill} />
@@ -311,7 +273,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="relative py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-16 text-center">
@@ -325,29 +286,23 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
+          <div className="mt-10 text-center -mb-18">
             <Button
               size="lg"
               variant="outline"
-              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold bg-transparent">
-              Barcha proyektlarni ko'rish
+              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white font-semibold bg-transparent text-[20px]">
+              All Projects
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="relative py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-8">
-            <span className="text-white">Keling </span>
-            <span className="text-cyan-400">Bog'lana Olamiz</span>
+            <span className="text-cyan-400">Contact </span>
           </h2>
-
-          <p className="text-xl text-slate-400 mb-12">
-            Proyekt, collaboration, yoki shunchaki salom deash uchun men bilan bog'laning. Happy to connect!
-          </p>
 
           <div className="flex flex-wrap gap-6 justify-center">
             <a
@@ -374,10 +329,10 @@ export default function Portfolio() {
             </a>
           </div>
 
-          {/* Resume Button */}
           <div className="mt-12">
             <a
-              href="/resume.pdf"
+              target="_blank"
+              href="/Karimov_Dilyorbek_resume.pdf"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all">
               Resume Download
               <ArrowRight className="w-5 h-5" />
@@ -386,10 +341,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="relative border-t border-slate-800 py-8 px-6 text-center text-slate-400">
         <div className="max-w-7xl mx-auto">
-          <p>© 2024 Mening Portfolio. Barcha huquq asoslanadi.</p>
+          <p>© 2026 Portfolio. </p>
         </div>
       </footer>
     </div>
