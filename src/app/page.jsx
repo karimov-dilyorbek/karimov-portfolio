@@ -251,13 +251,21 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                Men 5+ yillardan ortiq web development experience bilan professional developer. React, Next.js va
-                JavaScript bilan modern applications yaratishda expert. User experience va clean code quality ga
-                focus qilaman.
+                I'm Karimov Dilyorbek from Uzbekistan. I started studying frontend development at the age of 16. I
+                initially studied at Najot Ta`lim in Fergana. The main technologies I use are React, Tailwindcss.
+                My teacher is
+                <a
+                  href="https://ilhomlandim.uz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 ml-1">
+                  Mirzo Ulug`bek
+                </a>
+                .
               </p>
               <p className="text-slate-300 text-lg leading-relaxed">
-                Har bir project passion bilan approach qilaman. Performance optimization, responsive design, va
-                accessible interfaces yaratish mening priority. Teamwork va continuous learning ga ishonaman.
+                I approach each project with passion. Performance optimization, responsive design, and building
+                usable interfaces are my top priorities. I believe in teamwork and continuous learning.
               </p>
             </div>
 
@@ -306,26 +314,18 @@ export default function Portfolio() {
 
           <div className="flex flex-wrap gap-6 justify-center">
             <a
-              href="mailto:your@email.com"
+              href="mailto:karimovdilyorbekk@gmail.com?subject=Portfolio%20Contact&body=Assalomu%20alaykum%2C"
               className="flex items-center gap-3 px-6 py-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all group">
               <Mail className="w-5 h-5" />
               <span>Email</span>
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/karimov-dilyorbek"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 px-6 py-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all group">
               <Github className="w-5 h-5" />
               <span>GitHub</span>
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all group">
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
             </a>
           </div>
 
