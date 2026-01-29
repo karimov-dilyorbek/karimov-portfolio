@@ -182,19 +182,23 @@ export default function Portfolio() {
           isScrolled ? "bg-slate-950/80 backdrop-blur border-b border-slate-800" : "bg-transparent"
         }`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold">
+          <div className="text-2xl font-bold md:text-3xl">
             <span className="text-white">{"<"}</span>
             <span className="text-cyan-400">Portfolio</span>
             <span className="text-white">{"/>"}</span>
           </div>
-          <div className="flex gap-8 items-center">
-            <a href="#about" className="text-slate-300 hover:text-cyan-400 transition-colors">
+          <div className="flex gap-4 sm:gap-8 items-center">
+            <a href="#about" className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
               About Me
             </a>
-            <a href="#projects" className="text-slate-300 hover:text-cyan-400 transition-colors">
+            <a
+              href="#projects"
+              className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
               Projects
             </a>
-            <a href="#contact" className="text-slate-300 hover:text-cyan-400 transition-colors">
+            <a
+              href="#contact"
+              className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
               Contact
             </a>
           </div>
@@ -210,11 +214,11 @@ export default function Portfolio() {
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse mb-2">
               Karimov Dilyorbek
             </span>
             <br />
-            <span className="text-white"> Young Frontend Developer</span>
+            <span className="text-white text-[53px]"> Young Frontend Developer</span>
           </h1>
 
           <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
