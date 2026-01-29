@@ -182,23 +182,25 @@ export default function Portfolio() {
           isScrolled ? "bg-slate-950/80 backdrop-blur border-b border-slate-800" : "bg-transparent"
         }`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold md:text-3xl">
+          <div className="text-2xl font-bold sm:text-4xl ">
             <span className="text-white">{"<"}</span>
             <span className="text-cyan-400">Portfolio</span>
             <span className="text-white">{"/>"}</span>
           </div>
-          <div className="flex gap-4 sm:gap-8 items-center">
-            <a href="#about" className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
+          <div className="flex gap-4 sm:gap-8  items-center">
+            <a
+              href="#about"
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
               About Me
             </a>
             <a
               href="#projects"
-              className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
               Projects
             </a>
             <a
               href="#contact"
-              className="text-sm sm:text-base text-slate-300 hover:text-cyan-400 transition-colors">
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
               Contact
             </a>
           </div>
@@ -208,17 +210,17 @@ export default function Portfolio() {
       <section className="min-h-screen relative flex items-center justify-center pt-20 -mb-15">
         <div className="max-w-5xl mx-auto px-6 text-center z-10">
           <div className="mb-8 inline-block">
-            <div className="px-4 py-2 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-medium backdrop-blur animate-pulse">
+            <div className="px-4 py-2 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-medium backdrop-blur animate-pulse sm:text-[21px]">
               ✨ Frontend Developer
             </div>
           </div>
 
           <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse mb-2">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse ">
               Karimov Dilyorbek
             </span>
             <br />
-            <span className="text-white text-[53px]"> Young Frontend Developer</span>
+            <span className="text-white text-[48px]"> Young Frontend Developer</span>
           </h1>
 
           <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -247,7 +249,7 @@ export default function Portfolio() {
 
       <section id="about" className="relative px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-6xl font-bold mb-12 text-center">
+          <h2 className="text-6xl font-bold mb-12 text-center  @media (max-width: 555px) { text-4xl; mt-5 }">
             <span className="text-white">About </span>
             <span className="text-cyan-400">Me</span>
           </h2>
@@ -312,7 +314,7 @@ export default function Portfolio() {
 
       <section id="contact" className="relative py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8">
+          <h2 className="text-4xl font-bold mb-8 @media (max-width: 555px) { text-3xl; -mt-8 }">
             <span className="text-cyan-400">Contact </span>
           </h2>
 
