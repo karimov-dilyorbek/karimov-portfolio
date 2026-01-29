@@ -182,7 +182,7 @@ export default function Portfolio() {
           isScrolled ? "bg-slate-950/80 backdrop-blur border-b border-slate-800" : "bg-transparent"
         }`}>
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold sm:text-4xl ">
+          <div className="text-2xl font-bold sm:text-4xl @media (max-width: 440px) { text-[18px] }">
             <span className="text-white">{"<"}</span>
             <span className="text-cyan-400">Portfolio</span>
             <span className="text-white">{"/>"}</span>
@@ -190,17 +190,17 @@ export default function Portfolio() {
           <div className="flex gap-4 sm:gap-8  items-center">
             <a
               href="#about"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
               About Me
             </a>
             <a
               href="#projects"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
               Projects
             </a>
             <a
               href="#contact"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors">
+              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
               Contact
             </a>
           </div>
