@@ -227,23 +227,6 @@ export default function Portfolio() {
             Hi! I'm a passionate Frontend Developer focused on building responsive and interactive web
             applications. I enjoy turning ideas into clean and functional code using modern technologies.
           </p>
-
-          <div className="flex gap-4 justify-center mb-16">
-            <Button
-              size="lg"
-              className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold px-8"
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}>
-              Projects
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white font-semibold px-8 bg-transparent"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
-              Contact
-            </Button>
-          </div>
         </div>
       </section>
 
