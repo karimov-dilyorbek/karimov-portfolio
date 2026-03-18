@@ -1,21 +1,21 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Frontend Developer Portfolio",
-  description: "Modern portfolio showcasing web development projects and skills. Built with Next.js and React.",
+  title: "Karimov Dilyorbek | Frontend Developer",
+  description:
+    "Frontend developer portfolio built with Next.js and Tailwind CSS. Showcasing responsive websites and modern UI projects.",
   icons: {
-    icon: "/icon.svg",
+    icon: "/favicon.ico",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">{children}</body>
+      <body className={`${geist.className} bg-slate-950 text-slate-50 antialiased`}>{children}</body>
     </html>
   );
 }

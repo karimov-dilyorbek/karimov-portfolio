@@ -1,268 +1,117 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Github, Linkedin, Mail, ExternalLink, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, Github, Mail } from "lucide-react";
+import CosmicBackground from "@/components/CosmicBackground";
+import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
 
-function CosmicBackground() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const stars = [];
-
-    for (let i = 0; i < 150; i++) {
-      stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.5,
-        opacity: Math.random() * 0.5 + 0.5,
-        speed: Math.random() * 0.3 + 0.1,
-      });
-    }
-
-    let animationId;
-
-    const animate = () => {
-      ctx.fillStyle = "rgba(5, 15, 40, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        star.opacity += (Math.random() - 0.5) * 0.05;
-        star.opacity = Math.max(0.2, Math.min(1, star.opacity));
-
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = -10;
-          star.x = Math.random() * canvas.width;
-        }
-
-        ctx.fillStyle = `rgba(96, 165, 250, ${star.opacity})`;
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }} />;
-}
-
-function GlowingOrb() {
-  return (
-    <div className="fixed top-20 right-10 w-96 h-96 pointer-events-none opacity-20">
-      <div className="w-full h-full rounded-full bg-blue-500 blur-3xl animate-pulse" />
-    </div>
-  );
-}
-
-function ProjectCard({ title, description, tags, link }) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="group relative overflow-hidden rounded-lg border border-slate-700 bg-slate-900/50 backdrop-blur p-6 hover:border-cyan-500/50 transition-all duration-300">
-      <div
-        className={`absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-      />
-
-      <div className="relative z-10">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">{title}</h3>
-        <p className="text-slate-400 mb-4 text-sm leading-relaxed">{description}</p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-1 rounded-full bg-blue-500/20 text-cyan-300 border border-cyan-500/30">
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 text-sm font-medium group/link">
-          Open
-          <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function SkillBadge({ skill }) {
-  return (
-    <div className="px-4 py-2 rounded-full border border-cyan-500/30 bg-blue-500/10 text-cyan-300 text-sm hover:border-cyan-400 hover:bg-blue-500/20 transition-all duration-300 inline-block">
-      {skill}
-    </div>
-  );
-}
-
-export default function Portfolio() {
+export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "Modern e-commerce platform Next.js va TypeScript bilan qurilgan. Real-time inventory management va advanced filtering features.",
-      tags: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-      link: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "Collaborative task management application. Real-time updates, team collaboration, va advanced analytics features.",
-      tags: ["React", "Node.js", "MongoDB", "WebSocket"],
-      link: "#",
-    },
-    {
-      title: "AI Chat Interface",
-      description:
-        "Cutting-edge AI chat application. Advanced NLP processing, custom model training, va real-time message streaming.",
-      tags: ["Next.js", "OpenAI", "React", "TailwindCSS"],
-      link: "#",
-    },
-    {
-      title: "Analytics Dashboard",
-      description:
-        "Enterprise-grade analytics dashboard. Real-time data visualization, custom reports, va multi-user collaboration.",
-      tags: ["React", "D3.js", "GraphQL", "Firebase"],
-      link: "#",
-    },
-  ];
-
-  const skills = ["Html", "Css", "React", "Next.js", "JavaScript", "TailwindCSS", "TypeScript"];
+  const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-50">
       <CosmicBackground />
-      <GlowingOrb />
+
+      <div className="pointer-events-none fixed right-10 top-20 z-[1] h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
 
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-slate-950/80 backdrop-blur border-b border-slate-800" : "bg-transparent"
+        className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+          isScrolled ? "border-b border-slate-800 bg-slate-950/70 backdrop-blur-md" : "bg-transparent"
         }`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold sm:text-4xl @media (max-width: 440px) { text-[18px] }">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <div className="text-xl font-bold sm:text-3xl max-[440px]:text-[18px]">
             <span className="text-white">{"<"}</span>
             <span className="text-cyan-400">Portfolio</span>
             <span className="text-white">{"/>"}</span>
           </div>
-          <div className="flex gap-4 sm:gap-8  items-center">
+
+          <div className="flex items-center gap-4 sm:gap-8">
             <a
               href="#about"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
+              className="text-sm text-slate-300 transition-colors hover:text-cyan-400 sm:text-lg max-[440px]:text-[12px]">
               About Me
             </a>
             <a
               href="#projects"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
+              className="text-sm text-slate-300 transition-colors hover:text-cyan-400 sm:text-lg max-[440px]:text-[12px]">
               Projects
             </a>
             <a
               href="#contact"
-              className="text-base sm:text-2xl text-slate-300 hover:text-cyan-400 transition-colors @media (max-width: 440px) { text-[12px] }">
+              className="text-sm text-slate-300 transition-colors hover:text-cyan-400 sm:text-lg max-[440px]:text-[12px]">
               Contact
             </a>
           </div>
         </div>
       </nav>
 
-      <section className="min-h-screen relative flex items-center justify-center pt-20 -mb-15">
-        <div className="max-w-5xl mx-auto px-6 text-center z-10">
-          <div className="mb-8 inline-block">
-            <div className="px-4 py-2 rounded-full border border-cyan-500/50 text-cyan-400 text-sm font-medium backdrop-blur animate-pulse sm:text-[21px]">
-              ✨ Frontend Developer
-            </div>
+      <section className="relative z-10 flex min-h-[88vh] items-start justify-center px-6 pt-32 sm:pt-36 md:pt-40">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="mb-6 inline-block rounded-full border border-cyan-500/40 bg-slate-900/30 px-5 py-2 text-sm font-medium text-cyan-400 backdrop-blur animate-badge-glow sm:text-base">
+            ✨ Frontend Developer
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse ">
+          <h1 className="mb-5 text-4xl font-bold leading-tight sm:text-6xl md:text-7xl">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Karimov Dilyorbek
             </span>
             <br />
-            <span className="text-white text-[48px]"> Young Frontend Developer</span>
+            <span className="mt-8 block text-2xl text-white sm:text-4xl md:text-5xl">
+              Young Frontend <br /> Developer
+            </span>
           </h1>
 
-          <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-2xl text-base leading-8 text-slate-400 sm:text-xl">
             Hi! I'm a passionate Frontend Developer focused on building responsive and interactive web
             applications. I enjoy turning ideas into clean and functional code using modern technologies.
           </p>
         </div>
       </section>
 
-      <section id="about" className="relative px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-6xl font-bold mb-12 text-center  @media (max-width: 555px) { text-4xl; mt-5 }">
+      <section id="about" className="relative z-10 px-6 pb-16 -mt-20">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="mb-20 text-center text-4xl font-bold sm:text-5xl md:text-6xl">
             <span className="text-white">About </span>
             <span className="text-cyan-400">Me</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid gap-12 md:grid-cols-2">
             <div>
-              <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                I'm Karimov Dilyorbek from Uzbekistan. I started studying frontend development at the age of 16. I
-                initially studied at Najot Ta`lim in Fergana. The main technologies I use are React, Tailwindcss.
-                My teacher is
-                <a
-                  href="https://ilhomlandim.uz"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300 ml-1">
-                  Mirzo Ulug`bek
-                </a>
-                .
+              <p className="mb-6 text-base leading-8 text-slate-300 sm:text-lg">
+                I'm Karimov Dilyorbek from Uzbekistan. I started learning frontend development at the age of 16 and
+                have been improving my skills through practice and real projects. I mainly work with React,
+                Next.js, Tailwind CSS, and JavaScript.
               </p>
-              <p className="text-slate-300 text-lg leading-relaxed">
-                I approach each project with passion. Performance optimization, responsive design, and building
-                usable interfaces are my top priorities. I believe in teamwork and continuous learning.
+
+              <p className="text-base leading-8 text-slate-300 sm:text-lg">
+                I care about clean UI, responsive layouts, and writing code that feels polished and usable. My goal
+                is to build websites that look modern and work smoothly on all devices.
               </p>
             </div>
 
             <div>
-              <h3 className="text-4xl font-bold text-cyan-400 mb-6">Skills</h3>
+              <h3 className="mb-6 text-3xl font-bold text-cyan-400 sm:text-4xl">Skills</h3>
+
               <div className="flex flex-wrap gap-3">
-                {skills.map((skill) => (
-                  <SkillBadge key={skill} skill={skill} />
+                {["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "TypeScript"].map((skill) => (
+                  <span
+                    key={skill}
+                    className="inline-block rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-300 transition hover:border-cyan-400 hover:bg-cyan-500/20">
+                    {skill}
+                  </span>
                 ))}
               </div>
             </div>
@@ -270,69 +119,69 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="projects" className="relative py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-16 text-center">
+      <section id="projects" className="relative z-10 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mb-14 text-center text-4xl font-bold sm:text-5xl">
             <span className="text-white">Featured </span>
             <span className="text-cyan-400">Projects</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+          <div className="grid gap-8 lg:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
 
-          <div className="mt-10 text-center -mb-18">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-white font-semibold bg-transparent text-[20px]">
+          <div className="mt-10 text-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/50 bg-transparent px-6 py-3 text-base font-semibold text-cyan-400 transition hover:bg-cyan-500/10 hover:text-white">
               All Projects
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+              <ArrowRight className="h-5 w-5" />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="relative py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 @media (max-width: 555px) { text-3xl; -mt-8 }">
-            <span className="text-cyan-400">Contact </span>
+      <section id="contact" className="relative z-10 px-6 py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="mb-8 text-4xl font-bold sm:text-5xl">
+            <span className="text-cyan-400">Contact</span>
           </h2>
 
-          <div className="flex flex-wrap gap-6 justify-center">
+          <div className="flex flex-wrap justify-center gap-6">
             <a
-              href="mailto:karimovdilyorbekk@gmail.com?subject=Portfolio%20Contact&body=Assalomu%20alaykum%2C"
-              className="flex items-center gap-3 px-6 py-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all group">
-              <Mail className="w-5 h-5" />
+              href="mailto:karimovdilyorbekk@gmail.com?subject=Portfolio%20Contact"
+              className="flex items-center gap-3 rounded-lg border border-cyan-500/30 px-6 py-3 text-cyan-400 transition-all hover:border-cyan-500 hover:bg-cyan-500/10">
+              <Mail className="h-5 w-5" />
               <span>Email</span>
             </a>
+
             <a
               href="https://github.com/karimov-dilyorbek"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 transition-all group">
-              <Github className="w-5 h-5" />
+              className="flex items-center gap-3 rounded-lg border border-cyan-500/30 px-6 py-3 text-cyan-400 transition-all hover:border-cyan-500 hover:bg-cyan-500/10">
+              <Github className="h-5 w-5" />
               <span>GitHub</span>
             </a>
           </div>
 
           <div className="mt-12">
             <a
-              target="_blank"
               href="/Karimov_Dilyorbek_resume.pdf"
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all">
+              target="_blank"
+              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 font-semibold text-white transition hover:from-cyan-600 hover:to-blue-600">
               Resume Download
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </a>
           </div>
         </div>
       </section>
 
-      <footer className="relative border-t border-slate-800 py-8 px-6 text-center text-slate-400">
-        <div className="max-w-7xl mx-auto">
-          <p>© 2026 Portfolio. </p>
+      <footer className="relative z-10 border-t border-slate-800 px-6 py-8 text-center text-slate-400">
+        <div className="mx-auto max-w-7xl">
+          <p>© 2026 Karimov Dilyorbek.</p>
         </div>
       </footer>
     </div>
