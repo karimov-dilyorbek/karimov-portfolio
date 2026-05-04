@@ -54,6 +54,12 @@ export default function HomePage() {
               className="text-sm text-slate-300 transition-colors hover:text-cyan-400 sm:text-lg max-[440px]:text-[12px]">
               Contact
             </a>
+            <a
+              href="http://www.fiverr.com/s/ljwy47R"
+              target="_blank"
+              className="text-sm text-slate-300 transition-colors hover:text-cyan-400 sm:text-lg max-[440px]:text-[12px]">
+              Fiverr
+            </a>
           </div>
         </div>
       </nav>
